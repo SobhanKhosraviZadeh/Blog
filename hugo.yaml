@@ -1,4 +1,4 @@
-baseURL: "/"
+baseURL: "https://blog-366.pages.dev/"
 locale: "en-us"
 title: "Sobhan's Blog"
 theme: "stack"
