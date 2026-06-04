@@ -1,0 +1,11 @@
+baseURL: "/"
+locale: "en-us"
+title: "Sobhan's Blog"
+theme: "stack"
+
+params:
+  description: "Econ student."
+
+taxonomies:
+  category: "categories"
+  tag: "tags"
