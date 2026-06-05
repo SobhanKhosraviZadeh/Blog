@@ -1,0 +1,81 @@
+{{- with .Site.Params.comments.giscus -}}
+<section class="comments-giscus">
+    <div class="comments-giscus__intro">
+        <h2>Comments</h2>
+        <p>Questions, corrections, and thoughts are welcome. Plain text is fine.</p>
+    </div>
+
+    <script
+        src="https://giscus.app/client.js"
+        data-repo="{{- .repo -}}"
+        data-repo-id="{{- .repoID -}}"
+        data-category="{{- .category -}}"
+        data-category-id="{{- .categoryID -}}"
+        data-mapping="{{- .mapping -}}"
+        data-strict="{{- .strict -}}"
+        data-reactions-enabled="{{- .reactionsEnabled -}}"
+        data-emit-metadata="{{- .emitMetadata -}}"
+        data-input-position="{{- .inputPosition -}}"
+        data-theme="{{- .lightTheme -}}"
+        data-lang="{{- .lang -}}"
+        data-loading="{{- .loading -}}"
+        crossorigin="anonymous"
+        async
+    ></script>
+</section>
+
+<style>
+    .comments-giscus {
+        margin-top: var(--section-separation);
+    }
+
+    .comments-giscus__intro {
+        margin-bottom: 12px;
+    }
+
+    .comments-giscus__intro h2 {
+        font-size: 1.4rem;
+        margin: 0 0 4px;
+    }
+
+    .comments-giscus__intro p {
+        color: var(--card-text-color-secondary);
+        font-size: 0.95rem;
+        margin: 0;
+    }
+</style>
+
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (event) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('{{- .lightTheme -}}');
+            } else {
+                setGiscusTheme('{{- .darkTheme -}}');
+            }
+        }
+    })();
+</script>
+{{- end -}}

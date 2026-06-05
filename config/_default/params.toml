@@ -14,10 +14,10 @@ SortBy         = "default"
     lastUpdated = ":date_full"
 
 [sidebar]
-    compact = false
+    compact = true
     emoji    = "✏️"
     subtitle = "Econ student."
-    avatar   = "Blog_Avatar.jpg"
+    avatar   = "/Blog_Avatar.jpg"
 
 [article]
     headingAnchor = false
@@ -103,8 +103,9 @@ SortBy         = "default"
         functional = true
 
 [comments]
-    enabled  = true
-    provider = "local"
+    # Comments are disabled for now, but the Giscus setup below is kept for later.
+    enabled  = false
+    provider = "giscus"
 
     [comments.artalk]
         serverUrl = ""
@@ -168,12 +169,12 @@ SortBy         = "default"
         siteName             = ""  # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
 
     [comments.giscus]
-        repo             = ""
-        repoID           = ""
-        category         = ""
-        categoryID       = ""
-        mapping          = "title"
-        lightTheme       = "light"
+        repo             = "SobhanKhosraviZadeh/Blog"
+        repoID           = "R_kgDOSxbS0w"
+        category         = "General"
+        categoryID       = "DIC_kwDOSxbS084C-jFs"
+        mapping          = "pathname"
+        lightTheme       = "catppuccin_latte"
         darkTheme        = "dark_dimmed"
         reactionsEnabled = 1
         emitMetadata     = 0

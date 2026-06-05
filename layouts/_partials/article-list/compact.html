@@ -1,0 +1,36 @@
+{{ $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) }}
+<article class="post-card-compact {{ if $image }}has-image{{ end }}">
+    <a class="post-card-compact__link" href="{{ .RelPermalink }}">
+        {{ if $image }}
+        <div class="post-card-compact__image">
+            {{ partial "helper/thumbnail-image" (dict
+                "Resource" $image.Resource
+                "Width" 56
+                "Height" 56
+                "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
+                "Attributes" (dict
+                    "src" $image.Permalink
+                    "alt" (printf "Featured image of post %s" .Title)
+                    "loading" "lazy"
+                    "width" $image.Width
+                    "height" $image.Height
+                )
+            ) }}
+        </div>
+        {{ end }}
+
+        <div class="article-details">
+            <h2 class="article-title">
+                {{- .Title -}}
+            </h2>
+
+            {{- if not .Date.IsZero -}}
+            <footer class="article-meta">
+                <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                    {{- .Date | time.Format .Site.Params.dateFormat.published -}}
+                </time>
+            </footer>
+            {{- end -}}
+        </div>
+    </a>
+</article>
